@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+	<meta charset="utf-8">
+	<title>RequireJS</title>
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="../common.css" />
+	<script>
+	function log(msg) {
+		var msgNode = document.createElement('pre');
+		msgNode.innerHTML = msg;
+		document.getElementById('stdout').appendChild(msgNode);
+	}
+	</script>
+</head>
+<body>
+	<h1>RequireJS</h1>
+	<div id="stdout"></div>
+	<script src="static/js/app.build.js"></script>
+</body>
+</html>
