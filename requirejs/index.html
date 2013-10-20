@@ -6,6 +6,10 @@
 	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="../common.css" />
+	<script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
+	<script src="http://yandex.st/highlightjs/7.3/languages/javascript.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+	<link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/zenburn.min.css" />
 	<script>
 	function log(msg) {
 		var msgNode = document.createElement('pre');
@@ -17,6 +21,46 @@
 <body>
 	<h1>RequireJS</h1>
 	<div id="stdout"></div>
+	
+	<h2><a href="Gruntfile.js">Gruntfile.js</a></h2>
+	<pre><code class="javascript">module.exports = function(grunt) {
+	grunt.initConfig({
+		requirejs: {
+			compile: {
+				options: {
+					baseUrl: 'static/js',
+					paths: {
+						jquery: '../lib/jquery-2.0.3.min',
+						underscore: '../lib/underscore-min'
+					},
+					shim: {
+						underscore: {
+							exports: '_'
+						}
+					},
+					out: 'static/js/app.full.js',
+					name: 'app',
+					optimize: 'none'
+				}
+			}
+		},
+		concat: {
+			build: {
+				src: [
+					'static/lib/require.js',
+					'static/js/app.full.js'
+				],
+				dest: 'static/js/app.build.js'
+			}
+		}
+	});
+
+	grunt.loadNpmTasks('grunt-contrib-requirejs');
+	grunt.loadNpmTasks('grunt-contrib-concat');
+
+	grunt.registerTask('default', ['requirejs', 'concat']);
+};</code></pre>
+	
 	<script src="static/js/app.build.js"></script>
 </body>
 </html>

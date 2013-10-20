@@ -5,7 +5,13 @@ module.exports = function(grunt) {
 				options: {
 					baseUrl: 'static/js',
 					paths: {
-						jquery: '../lib/jquery-2.0.3.min'
+						jquery: '../lib/jquery-2.0.3.min',
+						underscore: '../lib/underscore-min'
+					},
+					shim: {
+						underscore: {
+							exports: '_'
+						}
 					},
 					out: 'static/js/app.full.js',
 					name: 'app',
