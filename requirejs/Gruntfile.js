@@ -17,6 +17,26 @@ module.exports = function(grunt) {
 					name: 'app',
 					optimize: 'none'
 				}
+			},
+			almond: {
+				options: {
+					baseUrl: 'static/js',
+					paths: {
+						almond: '../lib/almond',
+						jquery: '../lib/jquery-2.0.3.min',
+						underscore: '../lib/underscore-min'
+					},
+					shim: {
+						underscore: {
+							exports: '_'
+						}
+					},
+					include: ['app'],
+					out: 'static/js/app.almond.build.js',
+					name: 'almond',
+					optimize: 'none',
+					wrap: true
+				}
 			}
 		},
 		concat: {

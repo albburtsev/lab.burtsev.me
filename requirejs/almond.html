@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+	<meta charset="utf-8">
+	<title>RequireJS with Almond</title>
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="../common.css" />
+	<script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
+	<script src="http://yandex.st/highlightjs/7.3/languages/javascript.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+	<link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/zenburn.min.css" />
+	<script>
+	function log(msg) {
+		var msgNode = document.createElement('pre');
+		msgNode.innerHTML = msg;
+		document.getElementById('stdout').appendChild(msgNode);
+	}
+	</script>
+</head>
+<body>
+	<h1>RequireJS with <a href="https://github.com/jrburke/almond">Almond</a></h1>
+	<div id="stdout"></div>
+	
+	<h2><a href="Gruntfile.js">Gruntfile.js</a></h2>
+	<pre><code class="javascript">module.exports = function(grunt) {
+	grunt.initConfig({
+		almond: {
+			options: {
+				baseUrl: 'static/js',
+				paths: {
+					almond: '../lib/almond',
+					jquery: '../lib/jquery-2.0.3.min',
+					underscore: '../lib/underscore-min'
+				},
+				shim: {
+					underscore: {
+						exports: '_'
+					}
+				},
+				include: ['app'],
+				out: 'static/js/app.almond.build.js',
+				name: 'almond',
+				optimize: 'none',
+				wrap: true
+			}
+		}
+	});
+
+	grunt.loadNpmTasks('grunt-contrib-requirejs');
+
+	grunt.registerTask('default', ['requirejs']);
+};</code></pre>
+	
+	<script src="static/js/app.almond.build.js"></script>
+</body>
+</html>
